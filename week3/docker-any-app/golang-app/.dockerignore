@@ -1,0 +1,23 @@
+# Folder hasil build/binary lokal
+main
+/bin/
+/obj/
+
+# Folder dependensi Go (biasanya tidak perlu disalin jika menggunakan Go Modules)
+vendor/
+
+# Folder atau file konfigurasi editor/IDE
+.vscode/
+.idea/
+.DS_Store
+
+# File git
+.git/
+.gitignore
+
+# Dokumentasi
+README.md
+
+# File log atau temporary
+*.log
+*.tmp

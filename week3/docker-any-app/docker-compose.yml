@@ -1,0 +1,39 @@
+services:
+  # 1. Service Java Spring Boot
+  java-backend:
+    build:
+      context: ./java-docker-app
+    ports:
+      - "8081:8080"
+    networks:
+      - app-network
+
+  # 2. Service Golang API
+  go-backend:
+    build:
+      context: ./golang-app
+    environment:
+      - APP_NAME=Go-Service-Internal
+      - PORT=8080
+    ports:
+      - "8082:8080"
+    networks:
+      - app-network
+
+  # 3. Service ReactJS Frontend
+  frontend:
+    build:
+      context: ./reactjs-app
+      args:
+        - VITE_APP_NAME=Dashboard-Multi-Stack
+    ports:
+      - "80:80"
+    depends_on:
+      - java-backend
+      - go-backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
